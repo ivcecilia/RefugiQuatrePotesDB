@@ -1,5 +1,6 @@
 ﻿using CeciliaIvan_RefugiAnimals.Data;
 using CeciliaIvan_RefugiAnimals.Models;
+using CeciliaIvan_RefugiAnimals.Services;
 
 namespace CeciliaIvan_RefugiAnimals;
 
@@ -11,7 +12,7 @@ internal class Program
         {
             ctx.Database.EnsureDeleted();
             ctx.Database.EnsureCreated();
-            
+
             var rex = new Animal()
             {
                 Nom = "Rex",
@@ -25,7 +26,7 @@ internal class Program
                     Codi = "941000000000001"
                 }
             };
-             
+
             var bruna = new Animal()
             {
                 Nom = "Bruna",
@@ -39,7 +40,7 @@ internal class Program
                     Codi = "941000000000002"
                 }
             };
-             
+
             var toby = new Animal()
             {
                 Nom = "Toby",
@@ -53,7 +54,7 @@ internal class Program
                     Codi = "941000000000003"
                 }
             };
-             
+
             var kira = new Animal()
             {
                 Nom = "Kira",
@@ -67,7 +68,7 @@ internal class Program
                     Codi = "941000000000004"
                 }
             };
-             
+
             var luna = new Animal()
             {
                 Nom = "Luna",
@@ -81,7 +82,7 @@ internal class Program
                     Codi = "941000000000005"
                 }
             };
-             
+
             var simba = new Animal()
             {
                 Nom = "Simba",
@@ -95,7 +96,7 @@ internal class Program
                     Codi = "941000000000006"
                 }
             };
-             
+
             var mixa = new Animal()
             {
                 Nom = "Mixa",
@@ -109,7 +110,7 @@ internal class Program
                     Codi = "941000000000007"
                 }
             };
-             
+
             var bunny = new Animal()
             {
                 Nom = "Bunny",
@@ -123,7 +124,7 @@ internal class Program
                     Codi = "941000000000008"
                 }
             };
-             
+
             var piulet = new Animal()
             {
                 Nom = "Piulet",
@@ -137,13 +138,15 @@ internal class Program
                     Codi = "941000000000009"
                 }
             };
-             
+
             ctx.Animals.AddRange(rex, bruna, toby, kira, luna, simba, mixa, bunny, piulet);
             ctx.SaveChanges();
-            
+
             Console.WriteLine("=== Tots els animals ===");
             foreach (var a in ctx.Animals.ToList())
+            {
                 Console.WriteLine($"{a.AnimalID}. {a.Nom} ({a.Especie}) - Xip: {a.Xip.Codi}");
+            }
         }
     }
 }
