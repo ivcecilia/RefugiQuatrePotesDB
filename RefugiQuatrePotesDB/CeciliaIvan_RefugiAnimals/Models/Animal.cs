@@ -2,15 +2,15 @@
 
 public class Animal
 {
-    public int AnimalID;
-    public string Nom;
-    public Especie Especie;
-    public bool EsFemella;
-    public DateTime DataNaixement;
-    public DateTime DataEntrada;
-    public double Pes;
-    public bool EstaAdoptat;
-    public DateTime DataAdopcio;
-    public decimal QuotaAdopcio;
-    public int XipID;
+    public int AnimalID { get; set; }
+    public string Nom{ get; set; }
+    public Especie Especie{ get; set; }
+    public bool EsFemella{ get; set; }
+    public DateTime DataNaixement{ get; set; }
+    public DateTime DataEntrada{ get; set; }
+    public double Pes{ get; set; }
+    public bool EstaAdoptat{ get; set; }
+    public DateTime DataAdopcio{ get; set; }
+    public decimal QuotaAdopcio{ get; set; }
+    public int XipID{ get; set; }
 }
