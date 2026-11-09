@@ -12,13 +12,13 @@ public class Xip
     public string Codi{ get; set; }
     [Required]
     public DateTime DataImplantacio{ get; set; } 
-    public virtual Animal? Animal { get; set; }
+    public virtual Animal Animal { get; set; }
 
     public Xip()
     {
         DataImplantacio = DateTime.Now;
     }
-    public Xip(string codi, DateTime dataImplantacio, Animal? animal)
+    public Xip(string codi, DateTime dataImplantacio, Animal animal)
     {
         Codi = codi;
         DataImplantacio = dataImplantacio;
