@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefugiQuatrePotesDB", "RefugiQuatrePotesDB\RefugiQuatrePotesDB.csproj", "{40182192-24F1-40CA-912C-119295710EFC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{40182192-24F1-40CA-912C-119295710EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40182192-24F1-40CA-912C-119295710EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40182192-24F1-40CA-912C-119295710EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40182192-24F1-40CA-912C-119295710EFC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
