@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8UvbttSEAq4=",
+  "dgSpecHash": "6zKBB4J112c=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ies\\Documents\\GitHub\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB.csproj",
+  "projectFilePath": "C:\\Users\\ies\\Documents\\GitHub\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\CeciliaIvan_RefugiAnimals\\CeciliaIvan_RefugiAnimals.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ies\\.nuget\\packages\\castle.core\\5.2.1\\castle.core.5.2.1.nupkg.sha512",
     "C:\\Users\\ies\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

@@ -3084,11 +3084,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ies\\Documents\\GitHub\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB.csproj",
-      "projectName": "RefugiQuatrePotesDB",
-      "projectPath": "C:\\Users\\ies\\Documents\\GitHub\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB.csproj",
+      "projectUniqueName": "C:\\Users\\ies\\Documents\\GitHub\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\CeciliaIvan_RefugiAnimals\\CeciliaIvan_RefugiAnimals.csproj",
+      "projectName": "CeciliaIvan_RefugiAnimals",
+      "projectPath": "C:\\Users\\ies\\Documents\\GitHub\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\CeciliaIvan_RefugiAnimals\\CeciliaIvan_RefugiAnimals.csproj",
       "packagesPath": "C:\\Users\\ies\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ies\\Documents\\GitHub\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\obj\\",
+      "outputPath": "C:\\Users\\ies\\Documents\\GitHub\\RefugiQuatrePotesDB\\RefugiQuatrePotesDB\\CeciliaIvan_RefugiAnimals\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ies\\AppData\\Roaming\\NuGet\\NuGet.Config",
