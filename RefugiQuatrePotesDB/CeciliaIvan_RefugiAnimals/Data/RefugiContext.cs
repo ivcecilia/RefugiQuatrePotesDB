@@ -9,6 +9,7 @@ public class RefugiContext : DbContext
     
     public DbSet<Animal> Animals { get; set; }
     public DbSet<Xip> Xips { get; set; }
+    public DbSet<Adoptant> Adoptants { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -23,10 +24,19 @@ public class RefugiContext : DbContext
         modelBuilder.Entity<Animal>()
             .HasOne(a => a.Xip)
             .WithOne(x => x.Animal)
-            .HasForeignKey<Animal>(a => a.XipID)
-            .IsRequired();
+            .HasForeignKey<Animal>("XipID")    
+            .IsRequired()
+            .OnDelete(DeleteBehavior.Restrict);
+        
+        modelBuilder.Entity<Animal>()
+            .HasOne(an => an.Adoptant)
+            .WithMany(ad => ad.Animals)
+            .HasForeignKey("AdoptantID")
+            .OnDelete(DeleteBehavior.Cascade);
 
-        modelBuilder.Entity<Xip>()
-            .HasIndex(x => x.Codi);
+        modelBuilder.Entity<Animal>()
+            .Property(a => a.Especie)
+            .HasConversion<string>();
+
     }
 }

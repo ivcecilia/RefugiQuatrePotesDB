@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
+using Microsoft.EntityFrameworkCore;
 
 namespace CeciliaIvan_RefugiAnimals.Models;
 
@@ -22,11 +23,12 @@ public class Animal
     public double Pes{ get; set; }
     public bool EstaAdoptat{ get; set; }
     public DateTime? DataAdopcio{ get; set; }
-    [Column(TypeName = "decimal(8,2)")]
+    [Precision(8, 2)]  
     public decimal QuotaAdopcio{ get; set; }
     [Required]
     public int XipID{ get; set; }
     public virtual Xip Xip { get; set; } = null;
+    public virtual Adoptant? Adoptant{ get; set; }
 
     public override string ToString()
     {
@@ -37,20 +39,9 @@ public class Animal
     {
         DataEntrada = DateTime.Now;
         EstaAdoptat = false;
+        DataAdopcio = null;
         QuotaAdopcio = 0;
     }
 
-    public Animal(string nom, Especie especie, bool esFemella, DateTime dataNaixement, DateTime dataEntrada, double pes, bool estaAdoptat, DateTime dataAdopcio, decimal quotaAdopcio, int xipId)
-    {
-        Nom = nom;
-        Especie = especie;
-        EsFemella = esFemella;
-        DataNaixement = dataNaixement;
-        DataEntrada = dataEntrada;
-        Pes = pes;
-        EstaAdoptat = estaAdoptat;
-        DataAdopcio = dataAdopcio;
-        QuotaAdopcio = quotaAdopcio;
-        XipID = xipId;
-    }
+    
 }

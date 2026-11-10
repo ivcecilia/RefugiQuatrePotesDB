@@ -5,29 +5,55 @@ namespace CeciliaIvan_RefugiAnimals.Services;
 
 public class AnimalService
 {
-    private RefugiContext ctx;
+    private RefugiContext _context;
 
     public AnimalService(RefugiContext context)
     {
-        ctx = context;
+        _context = context;
     }
-    public List<Animal> CercaPerNom(Especie especie)
+
+    public List<Animal> GetTots()
     {
-        return ctx.Animals.ToList()
-            .Where(a => a.Especie == especie)
+        List<Animal> llista = _context.Animals
+            .OrderBy(a => a.AnimalID)
+            .ToList();
+        return llista;
+    }
+    //Ej1.2
+    public List<Animal> GetDisponibles(Especie especie)
+    {
+        List<Animal> llista = _context.Animals
+            .Where(a => a.Especie == especie && !a.EstaAdoptat)
             .OrderBy(a => a.DataEntrada)
             .ToList();
+        return llista;
     }
+
     public Animal? CercaPerXip(string codiXip)
     {
-        Animal? animal = ctx.Animals
-            .FirstOrDefault(a => a.Xip.Codi == codiXip);
 
-        if (animal == null)
+        if (codiXip.Length != 15 || !codiXip.All(char.IsDigit))
         {
-            Console.WriteLine("No existeix animal amb aquest xip");
+            Console.WriteLine($"El codi {codiXip} no és vàlid: han de ser 15 dígits");
+            return null;
         }
 
+        Animal? animal = _context.Animals.FirstOrDefault(a => a.Xip.Codi == codiXip);
+        if (animal == null)
+        {
+            Console.WriteLine($"No hi ha cap animal amb el xip {codiXip}");
+            return null;
+        }
         return animal;
+    }
+    //Ej1.3
+    public List<Animal> CercaPerNom(string text)
+    {
+        string cerca = text.ToLower();
+        List<Animal> llista = _context.Animals
+            .Where(a => a.Nom.ToLower().Contains(cerca))
+            .ToList();
+        return llista;
+
     }
 }

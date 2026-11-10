@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="RefugiAnimals.db" uuid="5a352515-8b1b-472e-8134-e74e69b784eb">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\ies\Documents\GitHub\RefugiQuatrePotesDB\RefugiQuatrePotesDB\CeciliaIvan_RefugiAnimals\bin\Debug\net10.0\RefugiAnimals.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>
