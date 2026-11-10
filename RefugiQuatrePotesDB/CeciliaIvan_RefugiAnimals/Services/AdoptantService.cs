@@ -41,4 +41,21 @@ public class AdoptantService
         Console.WriteLine("S'ha adoptat correctament l'animal amb nom "+an.Nom);
         return true;
     }
+
+    public bool Retornar(string codiXip)
+    {
+        Animal? an = _context.Animals.FirstOrDefault(an =>an.Xip.Codi == codiXip);
+        if(an==null) { Console.WriteLine("No existeix el animal"); return false; }
+        if (!an.EstaAdoptat){ Console.WriteLine("L'animal no esta adoptat"); return false; }
+        Adoptant a = _context.Adoptants.FirstOrDefault(a=>a.DNI==an.Adoptant.DNI);
+        an.EstaAdoptat = false;
+        an.Adoptant = null;
+        an.DataAdopcio = null;
+        an.DataEntrada = DateTime.Now;
+        a.Animals.Remove(an);
+        _context.Animals.Update(an);
+        _context.Adoptants.Update(a);
+        _context.SaveChanges();
+        return true;
+    }
 }
