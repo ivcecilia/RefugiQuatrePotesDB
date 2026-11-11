@@ -30,6 +30,7 @@ public class Animal
     public virtual Xip Xip { get; set; } = null!;
     public int? AdoptantID{ get; set; }
     public virtual Adoptant? Adoptant{ get; set; }
+    public virtual ICollection<Voluntari> Voluntaris { get; set; }
 
     public override string ToString()
     {
@@ -42,6 +43,7 @@ public class Animal
         EstaAdoptat = false;
         DataAdopcio = null;
         QuotaAdopcio = 0;
+        Voluntaris = new HashSet<Voluntari>();
     }
 
     

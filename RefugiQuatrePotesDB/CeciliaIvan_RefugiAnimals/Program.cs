@@ -110,28 +110,68 @@ internal class Program
         ctx.SaveChanges();
         AdoptantService adoptantService = new AdoptantService(ctx);
         
-        Console.WriteLine("--- Tots els adoptants ---");
+        Console.WriteLine("\n--- Tots els adoptants ---");
         foreach (Adoptant a in adoptantService.GetTots())
         {
             Console.WriteLine(a);
         }
+        Console.WriteLine("\n--- Adoptar animals ---");
         adoptantService.Adoptar("12345678Z", "724098100000003");
         adoptantService.Adoptar("6767", "724098100000003");
         adoptantService.Adoptar("12345678Z", "6767");
         adoptantService.Adoptar("87654321X", "724098100000003");
         adoptantService.Adoptar("87654321X", "724098100000002");
         //Ej2.2
-        
+        Console.WriteLine("\n--- Animals retornats ---");
         adoptantService.Retornar("724098100000003");   
         adoptantService.Retornar("724098100000003");   
         adoptantService.Retornar("6767");             
         adoptantService.Retornar("724098100000005");  
-        
+        Console.WriteLine("\n--- Gossos disponibles ---");
         foreach (Animal a in animalService.GetDisponibles(Especie.GOS))
         {
             Console.WriteLine(a);
         }
         //Ej2.3
-        adoptantService.LlistatAdoptants(1);
+        Console.WriteLine("\n--- Llistat d'adoptants amb un minim de 0 animals---");
+        adoptantService.LlistatAdoptants(0);
+        
+        //----------------------------------------------------------------------------------------------
+        //Ej3.1
+        List<Voluntari> voluntaris = new List<Voluntari>()
+        {
+            new Voluntari(){ Nom="Aina",  Torn = Torn.MATI,
+                Animals = new List<Animal>{ animals[0], animals[1], animals[4], animals[5] } }, 
+            new Voluntari(){ Nom="Joan",  Torn = Torn.TARDA,
+                Animals = new List<Animal>{ animals[4], animals[7] } },                         
+            new Voluntari(){ Nom="Nuria", Torn = Torn.CAP_DE_SETMANA,
+                Animals = new List<Animal>{ animals[8] } }                                 
+        };
+        ctx.Voluntaris.AddRange(voluntaris);
+        ctx.SaveChanges();
+        VoluntariService voluntariService = new VoluntariService(ctx);
+        Console.WriteLine("\n--- Tots els voluntaris ---");
+        foreach (Voluntari v in voluntariService.GetTots())
+        {
+            Console.WriteLine(v);
+        }
+        Console.WriteLine("\n--- Assignar animals ---");
+        voluntariService.AssignarAnimal("Joan", "724098100000007"); 
+        voluntariService.AssignarAnimal("Marc", "724098100000007"); 
+        voluntariService.AssignarAnimal("Joan", "724098100000999"); 
+        voluntariService.AssignarAnimal("Joan", "724098100000004"); 
+        voluntariService.AssignarAnimal("Joan", "724098100000005");  
+        voluntariService.AssignarAnimal("Aina", "724098100000008");
+        //EJ3.2
+        Console.WriteLine("\n--- Desassignar animals ---");
+        voluntariService.DesassignarAnimal("Joan", "724098100000007");  
+        voluntariService.DesassignarAnimal("Marc", "724098100000007"); 
+        voluntariService.DesassignarAnimal("Joan", "724098100000999");  
+        voluntariService.DesassignarAnimal("Nuria", "724098100000005"); 
+        //EJ3.3
+        Console.WriteLine("\n--- Registrar passeigs ---");
+        voluntariService.RegistrarPasseig("Aina", "724098100000001", 67);  // Luna: 0 -> 30
+        voluntariService.RegistrarPasseig("Aina", "724098100000001", 420);  // Luna: 30 -> 75 (s'acumula)
+        voluntariService.RegistrarPasseig("Aina", "724098100000006", 6767);
     }
 }

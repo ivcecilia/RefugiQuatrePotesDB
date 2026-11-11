@@ -21,6 +21,6 @@ public class Xip
     }
     public override string ToString()
     {
-        return $"Xip: {{XipID = {XipID} ,Codi = {Codi} ,DataImplantacio = {DataImplantacio} ,Animal = {Animal}}}";
+        return $"Xip: {{XipID = {XipID} ,Codi = {Codi} ,DataImplantacio = {DataImplantacio}}}";
     }
 }

@@ -32,8 +32,13 @@ public class AdoptantService
         if(an.Especie==Especie.GOS&&!a.TeJardi){ Console.WriteLine("Es un gos i l'adoptant no te jardi"); return false; }
         if(a.Animals.Count>=3){ Console.WriteLine("Ja te el maxim de 3 animals"); return false; }
         
+        
         an.EstaAdoptat = true;
         an.DataAdopcio = DateTime.Now;
+        if(an.Voluntaris.Count>0)
+        {
+            an.Voluntaris.Clear();
+        }
         a.Animals.Add(an);
 
         _context.SaveChanges();
@@ -52,10 +57,10 @@ public class AdoptantService
         an.DataAdopcio = null;
         an.DataEntrada = DateTime.Now;
         if(a!=null) a.Animals.Remove(an);
-        an.Adoptant = null;
+
         
         _context.SaveChanges();
-        Console.WriteLine("S'ha retornat correctament l'animal amb nom " + an.Nom);;
+        Console.WriteLine("S'ha retornat correctament l'animal amb nom " + an.Nom);
         return true;
     }
 

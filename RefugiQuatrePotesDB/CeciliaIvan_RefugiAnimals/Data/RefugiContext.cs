@@ -10,6 +10,7 @@ public class RefugiContext : DbContext
     public DbSet<Animal> Animals { get; set; }
     public DbSet<Xip> Xips { get; set; }
     public DbSet<Adoptant> Adoptants { get; set; }
+    public DbSet<Voluntari>  Voluntaris { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -21,6 +22,7 @@ public class RefugiContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        //Ej1
         modelBuilder.Entity<Animal>()
             .HasOne(a => a.Xip)
             .WithOne(x => x.Animal)
@@ -28,15 +30,22 @@ public class RefugiContext : DbContext
             .IsRequired()
             .OnDelete(DeleteBehavior.Restrict);
         
+        
+        modelBuilder.Entity<Animal>()
+            .Property(a => a.Especie)
+            .HasConversion<string>();
+        //Ej2
         modelBuilder.Entity<Animal>()
             .HasOne(an => an.Adoptant)
             .WithMany(ad => ad.Animals)
             .HasForeignKey(a=>a.AdoptantID)
             .OnDelete(DeleteBehavior.Cascade);
-
+        //Ej3
         modelBuilder.Entity<Animal>()
-            .Property(a => a.Especie)
-            .HasConversion<string>();
+            .HasMany(v => v.Voluntaris)
+            .WithMany(an => an.Animals)
+            .UsingEntity(c => c.ToTable("Cura"));
+
 
     }
 }
