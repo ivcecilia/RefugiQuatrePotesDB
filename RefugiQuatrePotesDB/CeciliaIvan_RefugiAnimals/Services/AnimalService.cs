@@ -32,7 +32,7 @@ public class AnimalService
     public Animal? CercaPerXip(string codiXip)
     {
 
-        if (codiXip.Length != 15 || !codiXip.All(char.IsDigit))
+        if (codiXip.Length != 15 || !codiXip.All(char.IsDigit)||string.IsNullOrEmpty(codiXip))
         {
             Console.WriteLine($"El codi {codiXip} no és vàlid: han de ser 15 dígits");
             return null;
@@ -49,6 +49,7 @@ public class AnimalService
     //Ej1.3
     public List<Animal> CercaPerNom(string text)
     {
+        if (string.IsNullOrWhiteSpace(text)) return new List<Animal>();
         string cerca = text.ToLower();
         List<Animal> llista = _context.Animals
             .Where(a => a.Nom.ToLower().Contains(cerca))

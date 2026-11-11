@@ -9,7 +9,7 @@ public class Xip
     [Key]
     public int XipID { get; set; }
     [Required, StringLength(15, MinimumLength = 15)]
-    public string Codi{ get; set; }
+    public string Codi{ get; set; } ="";
     [Required]
     public DateTime DataImplantacio{ get; set; }
 
@@ -19,5 +19,8 @@ public class Xip
     {
         DataImplantacio = DateTime.Now;
     }
-    
+    public override string ToString()
+    {
+        return $"Xip: {{XipID = {XipID} ,Codi = {Codi} ,DataImplantacio = {DataImplantacio} ,Animal = {Animal}}}";
+    }
 }

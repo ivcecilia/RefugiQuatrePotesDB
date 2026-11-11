@@ -30,13 +30,12 @@ public class AdoptantService
         if(an==null) { Console.WriteLine("No existeix el animal"); return false; }
         if (an.EstaAdoptat){ Console.WriteLine("L'animal ja esta adoptat"); return false; }
         if(an.Especie==Especie.GOS&&!a.TeJardi){ Console.WriteLine("Es un gos i l'adoptant no te jardi"); return false; }
-        if(a.Animals.Count>=3){ Console.WriteLine("Ja te mes de 3 animals"); return false; }
+        if(a.Animals.Count>=3){ Console.WriteLine("Ja te el maxim de 3 animals"); return false; }
         
         an.EstaAdoptat = true;
         an.DataAdopcio = DateTime.Now;
         a.Animals.Add(an);
-        _context.Animals.Update(an);
-        _context.Adoptants.Update(a);
+
         _context.SaveChanges();
         Console.WriteLine("S'ha adoptat correctament l'animal amb nom "+an.Nom);
         return true;
@@ -47,15 +46,16 @@ public class AdoptantService
         Animal? an = _context.Animals.FirstOrDefault(an =>an.Xip.Codi == codiXip);
         if(an==null) { Console.WriteLine("No existeix el animal"); return false; }
         if (!an.EstaAdoptat){ Console.WriteLine("L'animal no esta adoptat"); return false; }
-        Adoptant a = _context.Adoptants.FirstOrDefault(a=>a.DNI==an.Adoptant.DNI);
+        Adoptant? a =an.Adoptant;
         an.EstaAdoptat = false;
         an.Adoptant = null;
         an.DataAdopcio = null;
         an.DataEntrada = DateTime.Now;
-        a.Animals.Remove(an);
-        _context.Animals.Update(an);
-        _context.Adoptants.Update(a);
+        if(a!=null) a.Animals.Remove(an);
+        an.Adoptant = null;
+        
         _context.SaveChanges();
+        Console.WriteLine("S'ha retornat correctament l'animal amb nom " + an.Nom);;
         return true;
     }
 }

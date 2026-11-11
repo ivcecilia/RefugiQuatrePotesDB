@@ -10,7 +10,7 @@ public class Animal
     [Key]
     public int AnimalID { get; set; }
     [Required,MaxLength(50)]
-    public string Nom{ get; set; }
+    public string Nom{ get; set; } ="";
     [Required]
     public Especie Especie{ get; set; }
     [Required]
@@ -27,7 +27,8 @@ public class Animal
     public decimal QuotaAdopcio{ get; set; }
     [Required]
     public int XipID{ get; set; }
-    public virtual Xip Xip { get; set; } = null;
+    public virtual Xip Xip { get; set; } = null!;
+    public int? AdoptantID{ get; set; }
     public virtual Adoptant? Adoptant{ get; set; }
 
     public override string ToString()

@@ -9,11 +9,11 @@ public class Adoptant
     [Key]
     public int AdoptantID { get; set; }
     [Required,MaxLength(9)]
-    public string DNI{ get; set; }
+    public string DNI{ get; set; } ="";
     [Required,MaxLength(50)]
-    public string Nom{ get; set; }
+    public string Nom{ get; set; } ="";
     [Required,MaxLength(100)]
-    public string Cognoms{ get; set; }
+    public string Cognoms{ get; set; } ="";
     [Required]
     public bool TeJardi{ get; set; }
     [Required]

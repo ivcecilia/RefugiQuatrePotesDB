@@ -68,6 +68,13 @@ internal class Program
         {
             Console.WriteLine("No hi ha cap animal disponible d'aquesta espècie");
         }
+        else
+        {
+            foreach (Animal a in altres)
+            {
+                Console.WriteLine(a);
+            }
+        }
 
         Console.WriteLine("\n--- Cerca per xip ---");
         Animal? trobat = animalService.CercaPerXip("724098100000003");
