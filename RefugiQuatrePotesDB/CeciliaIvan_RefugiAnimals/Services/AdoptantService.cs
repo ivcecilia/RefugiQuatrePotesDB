@@ -58,4 +58,19 @@ public class AdoptantService
         Console.WriteLine("S'ha retornat correctament l'animal amb nom " + an.Nom);;
         return true;
     }
+
+    public void LlistatAdoptants(int minAnimals)
+    {
+        var adoptants = _context.Adoptants
+            .Where(a => a.Animals.Count >= minAnimals)
+            .OrderByDescending(a => a.Animals.Count)
+            .Select(a => new {NomComplet = a.Nom +" "+a.Cognoms, NumAnimals = a.Animals.Count})
+            .ToList();
+        
+        Console.WriteLine("L'adoptants am com a minim "+minAnimals+" animals");
+        foreach (var a in adoptants)
+        {
+            Console.WriteLine($"{a.NomComplet}: {a.NumAnimals} animals");
+        }
+    }
 }

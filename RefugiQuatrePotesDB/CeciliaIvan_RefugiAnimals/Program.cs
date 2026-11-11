@@ -88,7 +88,7 @@ internal class Program
         Console.WriteLine("\n--- Cerca per xip, codis mal formats ---");
         animalService.CercaPerXip("12345");             
         animalService.CercaPerXip("72409810000000A");   
-
+        
         Console.WriteLine("\n--- Cerca per nom ---");
         List<string> textos = new List<string>() { "lu", "LU", "Lu" };
         foreach (string text in textos)
@@ -99,7 +99,8 @@ internal class Program
                 Console.WriteLine($"   {a}");
             }
         }
-
+        //----------------------------------------------------------------------------------------------
+        //Ej2.1
         List<Adoptant> adoptants = new List<Adoptant>()
         {
             new Adoptant() { DNI = "12345678Z", Nom = "Marta", Cognoms = "Puig Soler", TeJardi = true },
@@ -114,13 +115,23 @@ internal class Program
         {
             Console.WriteLine(a);
         }
-
         adoptantService.Adoptar("12345678Z", "724098100000003");
         adoptantService.Adoptar("6767", "724098100000003");
         adoptantService.Adoptar("12345678Z", "6767");
         adoptantService.Adoptar("87654321X", "724098100000003");
         adoptantService.Adoptar("87654321X", "724098100000002");
-
+        //Ej2.2
         
+        adoptantService.Retornar("724098100000003");   
+        adoptantService.Retornar("724098100000003");   
+        adoptantService.Retornar("6767");             
+        adoptantService.Retornar("724098100000005");  
+        
+        foreach (Animal a in animalService.GetDisponibles(Especie.GOS))
+        {
+            Console.WriteLine(a);
+        }
+        //Ej2.3
+        adoptantService.LlistatAdoptants(1);
     }
 }
