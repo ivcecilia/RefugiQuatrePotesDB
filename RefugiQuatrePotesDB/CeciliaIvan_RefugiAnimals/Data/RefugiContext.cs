@@ -45,6 +45,14 @@ public class RefugiContext : DbContext
             .HasMany(v => v.Voluntaris)
             .WithMany(an => an.Animals)
             .UsingEntity(c => c.ToTable("Cura"));
+        //Ej4
+        modelBuilder.Entity<Animal>()
+            .HasOne(c => c.Mare)
+            .WithMany(m => m.Cries)
+            .HasForeignKey("MareID")
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.Restrict);
+
 
 
     }

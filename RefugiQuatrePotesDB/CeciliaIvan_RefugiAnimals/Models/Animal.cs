@@ -31,10 +31,13 @@ public class Animal
     public int? AdoptantID{ get; set; }
     public virtual Adoptant? Adoptant{ get; set; }
     public virtual ICollection<Voluntari> Voluntaris { get; set; }
+    public int? MareID { get; set; }
+    public virtual Animal? Mare { get; set; }
+    public virtual ICollection<Animal> Cries { get; set; }
 
     public override string ToString()
     {
-        return $"Animal: {{AnimalId = {AnimalID} ,Nom = {Nom} ,Especie = {Especie} ,EsFemella = {EsFemella} ,DataNaixement = {DataNaixement} ,DataEntrada = {DataEntrada} ,Pes = {Pes} ,EstaAdoptat = {EstaAdoptat} , DataAdopcio = {DataAdopcio} , QuotaAdopcio = {QuotaAdopcio} , XipId = {XipID} , Xip = {Xip}}}";
+        return $"Animal: {{AnimalId = {AnimalID} ,Nom = {Nom} ,Especie = {Especie} ,EsFemella = {EsFemella} ,DataNaixement = {DataNaixement} ,DataEntrada = {DataEntrada} ,Pes = {Pes} ,EstaAdoptat = {EstaAdoptat} , DataAdopcio = {DataAdopcio} , QuotaAdopcio = {QuotaAdopcio} , XipId = {XipID} , Xip = {Xip}}}"; ;
     }
 
     public Animal()
@@ -44,6 +47,7 @@ public class Animal
         DataAdopcio = null;
         QuotaAdopcio = 0;
         Voluntaris = new HashSet<Voluntari>();
+        Cries = new HashSet<Animal>();
     }
 
     
