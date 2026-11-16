@@ -160,4 +160,31 @@ public class AnimalService
         return true;
     }
     //Ej4.3
+    public List<Animal> Descendents(string codiXip)
+    {
+        if (codiXip.Length != 15 || !codiXip.All(char.IsDigit)||string.IsNullOrEmpty(codiXip))
+        {
+            Console.WriteLine($"El codi {codiXip} no és vàlid: han de ser 15 dígits");
+            return null;
+        }
+        Animal? animal = _context.Animals.FirstOrDefault(a => a.Xip.Codi == codiXip);
+        if (animal == null)
+        {
+            Console.WriteLine("No existeix ningun animal amb aquest codi");
+            return [];
+        }
+
+        List<Animal> cries = new List<Animal>();
+        AfegirDescendents(cries, animal);
+        return cries;
+    }
+
+    public void AfegirDescendents(List<Animal> cries, Animal animal)
+    {
+        foreach (Animal a in animal.Cries)
+        {
+            cries.Add(a);
+            AfegirDescendents(cries, a);
+        }
+    }
 }

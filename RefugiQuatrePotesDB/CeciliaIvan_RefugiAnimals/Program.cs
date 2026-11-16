@@ -400,19 +400,5 @@ MostrarDescendents("724098100000012");     // Coco: [Rocky, Bimba, Toby]
 MostrarDescendents("724098100000013");     // Rocky: [] (no té cries)
 MostrarDescendents("724098100000999");     // no existeix: missatge i []
 
-// ============ Extra · Esborrar una mare no esborra les cries ============
-// Amb Restrict, no es pot esborrar la Coco mentre tingui cries: peta i les cries continuen a la BD
-Console.WriteLine("\n--- Esborrar una mare ---");
-try
-{
-    db.Animals.Remove(coco);
-    db.SaveChanges();
-    Console.WriteLine("S'ha esborrat la Coco (no hauria!)");
-}
-catch (Exception e)     // segons el cas, EF llança InvalidOperationException o la BD DbUpdateException
-{
-    Console.WriteLine($"No s'ha esborrat la Coco · {e.GetType().Name}");
-    db.ChangeTracker.Clear();   // si no, l'esborrat continua pendent i el següent SaveChanges tornaria a petar
-}
-Console.WriteLine($"Animals a la BD: {db.Animals.Count()} (el Rocky, la Bimba i el Toby hi continuen)");
+
 
