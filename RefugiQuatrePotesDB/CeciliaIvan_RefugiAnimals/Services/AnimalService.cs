@@ -187,4 +187,74 @@ public class AnimalService
             AfegirDescendents(cries, a);
         }
     }
+    //Ej5
+    public void CalcularDespesaMes()
+    {
+        Animal mesCar = null;
+        decimal preuMesCar = 0;
+        decimal total = 0;
+        foreach (Animal a in _context.Animals.ToList())
+        {
+            if (a.EstaAdoptat) continue;
+            decimal previ = a.DespesaAcumulada;
+            decimal variable = 0;
+            string afe = "";
+            switch (a.Especie)
+            {
+                case(Especie.GOS):
+                    variable += 60;
+                    break;
+                case(Especie.GAT):
+                    variable += 40;
+                    break;
+                case(Especie.CONILL):
+                    variable += 15;
+                    break;
+                case(Especie.AU):
+                    variable += 10;
+                    break;
+                case(Especie.ALTRES):
+                    variable += 20;
+                    break;
+            }
+            if (a.Voluntaris.Count>0)
+            {
+                variable *= 0.9M;
+                afe += ", te voluntaris";
+            }
+            
+            if (( DateTime.Today.Year - a.DataNaixement.Year) >= 8)
+            {
+                variable *= 1.3M;
+                afe += ", es senior";
+            }
+
+            if (a.Cries.Count > 0)
+            {
+                
+                foreach (Animal ani in a.Cries.ToList())
+                {
+                    if (!ani.EstaAdoptat)
+                    {
+                        variable *= 1.1M;
+                    }
+                }
+                afe += ", te "+a.Cries.Count+" cries";
+            }
+
+            if (variable > preuMesCar)
+            {
+                preuMesCar = variable;
+                mesCar = a;
+            }
+            
+            total += variable;
+            a.DespesaAcumulada += variable;
+            _context.SaveChanges();
+            Console.WriteLine(a.Nom+": Despesa Previa: "+previ+"$, Despesa Mensual: "+variable+"$, Despesa Actual: "+a.DespesaAcumulada+"$"+afe);
+            
+        }
+
+        Console.WriteLine("Animal mes car del mes: " + mesCar.Nom+" amb un preu de "+preuMesCar+"$, Gastos mensuals: "+total+"$");
+    }
 }

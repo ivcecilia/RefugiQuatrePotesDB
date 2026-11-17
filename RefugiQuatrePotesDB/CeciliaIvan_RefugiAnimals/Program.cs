@@ -131,11 +131,13 @@ Animal bruc = db.Animals.First(a => a.Xip.Codi == "724098100000004");
 
 Adoptant marta = new Adoptant() { DNI = "12345678Z", Nom = "Marta", Cognoms = "Puig Soler", TeJardi = true };
 Adoptant pau = new Adoptant() { DNI = "87654321X", Nom = "Pau", Cognoms = "Ferrer Vidal", TeJardi = false };
+Adoptant peter = new Adoptant() { DNI = "87654321Z", Nom = "Peter", Cognoms = "Super Peter", TeJardi = true };
+
 bruc.Adoptant = marta;
 
 // Crear l'objecte no n'hi ha prou: cal afegir-lo al context i desar-lo.
 // I ABANS de cridar Adoptar, que busca l'adoptant a la BD.
-db.Adoptants.AddRange(marta, pau);
+db.Adoptants.AddRange(marta, pau,peter);
 db.SaveChanges();
 
 AdoptantService adoptantService = new AdoptantService(db);
@@ -400,5 +402,11 @@ MostrarDescendents("724098100000012");     // Coco: [Rocky, Bimba, Toby]
 MostrarDescendents("724098100000013");     // Rocky: [] (no té cries)
 MostrarDescendents("724098100000999");     // no existeix: missatge i []
 
+Console.WriteLine("\n--- Despeses ---");
+animalService.CalcularDespesaMes();
+Console.WriteLine("\n--- Despeses2 ---");
+adoptantService.Adoptar("87654321Z", "724098100000012");
+
+animalService.CalcularDespesaMes();
 
 
