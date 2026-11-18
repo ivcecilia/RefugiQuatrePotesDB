@@ -36,6 +36,7 @@ public class Animal
     public virtual ICollection<Animal> Cries { get; set; }
     [Precision(8, 2)]  
     public decimal DespesaAcumulada { get; set; }
+    public virtual ICollection<Visita> Visites { get; set; }
 
     public override string ToString()
     {
@@ -51,6 +52,7 @@ public class Animal
         Voluntaris = new HashSet<Voluntari>();
         Cries = new HashSet<Animal>();
         DespesaAcumulada = 0;
+        Visites = new HashSet<Visita>();
     }
 
     

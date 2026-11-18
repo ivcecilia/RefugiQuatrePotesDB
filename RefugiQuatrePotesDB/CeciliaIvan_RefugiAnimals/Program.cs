@@ -408,5 +408,7 @@ Console.WriteLine("\n--- Despeses2 ---");
 adoptantService.Adoptar("87654321Z", "724098100000012");
 
 animalService.CalcularDespesaMes();
-
+VisitaService visitaService = new VisitaService(db);
+Console.WriteLine("\n--- Visites generades ---");
+visitaService.GenerarVisites(30);
 
