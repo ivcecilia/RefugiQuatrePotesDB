@@ -57,7 +57,7 @@ public class RefugiContext : DbContext
         modelBuilder.Entity<Visita>()
             .HasOne(a => a.AnimalVisitat)
             .WithMany(an => an.Visites)
-            .HasForeignKey(ad=>ad.VisitaID)
+            .HasForeignKey("AnimalID")
             .OnDelete(DeleteBehavior.Cascade);
 
 
