@@ -257,4 +257,26 @@ public class AnimalService
 
         Console.WriteLine("Animal mes car del mes: " + mesCar.Nom+" amb un preu de "+preuMesCar+"$, Gastos mensuals: "+total+"$");
     }
+    //Ej6
+    public void EstadistiquesPerEspecie()
+    {
+        var perEspecie = _context.Animals
+            .GroupBy(a => a.Especie)
+            .Select(e => new
+            {
+                Especie = e.Key,
+                Total = e.Count(),
+                Adoptats = e.Count(ag =>ag.EstaAdoptat),
+                Disponibles = e.Count(ag =>!ag.EstaAdoptat),
+                Pes = e.Average(a => a.Pes)
+            })
+            .OrderByDescending(e => e.Total)
+            .ToList();
+        
+        foreach (var an in perEspecie)
+        {
+            Console.WriteLine($"{an.Especie}: {an.Total} Animals, {an.Adoptats} animals adoptats, {an.Disponibles} animals disponibles, {an.Pes} mitja de pes");
+        }
+    }
+
 }

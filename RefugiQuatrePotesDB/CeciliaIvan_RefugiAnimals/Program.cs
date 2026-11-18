@@ -411,4 +411,6 @@ animalService.CalcularDespesaMes();
 VisitaService visitaService = new VisitaService(db);
 Console.WriteLine("\n--- Visites generades ---");
 visitaService.GenerarVisites(30);
+Console.WriteLine("\n--- Estadistiques Per Especie ---");
+animalService.EstadistiquesPerEspecie();
 
