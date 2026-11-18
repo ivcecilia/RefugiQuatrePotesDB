@@ -86,6 +86,21 @@ public class VisitaService
 
     public void EstadistiquesPerMotiu()
     {
+        var perMotiu = _context.Visites
+            .GroupBy(a => a.Motiu)
+            .Select(e => new
+            {
+                Motiu = e.Key,
+                Visites = e.Count(),
+                Cost = e.Sum(ag =>ag.Cost),
+                Avg= e.Average(ag =>ag.Cost)
+                
+            })
+            .OrderByDescending(e => e.Cost)
+            .ToList();
         
+        foreach (var an in perMotiu)
+        {
+        }
     }
 }
